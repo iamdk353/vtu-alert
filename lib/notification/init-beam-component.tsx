@@ -13,6 +13,7 @@ export default function BeamsInit({
       setSuccessSubscription(true);
       return;
     }
+
     if (typeof window === "undefined") return;
     console.log("[BeamsInit] window detected");
 
@@ -56,6 +57,9 @@ export default function BeamsInit({
         // add local storage
         localStorage.setItem("beams-subscribed", "true");
       } catch (err) {
+        toast.error(
+          "Failed to subscribe to notifications, try it in chrome browser."
+        );
         console.error("[BeamsInit] ❌ ERROR:", err);
       }
     }, 300);

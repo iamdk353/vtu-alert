@@ -45,7 +45,7 @@ export function HeroSection() {
               variant="secondary"
               className="mb-6 px-4 py-1.5 font-mono text-xs inline-flex items-center gap-2"
             >
-              <span className="w-2 h-2 bg-accent animate-pulse" />
+              <span className="w-2 h-2 bg-primary animate-pulse rounded-full" />
               One-Click Setup No Signup Required
             </Badge>
           </FadeIn>

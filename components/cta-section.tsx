@@ -4,31 +4,24 @@ import { Button } from "@/components/ui/button";
 import { FadeIn, SlideUp } from "@/components/motion-wrapper";
 import { Bell } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 
 export function CTASection() {
   const [notificationStatus, setNotificationStatus] = useState<
     "idle" | "granted" | "denied"
   >("idle");
 
-  const enableNotifications = async () => {
-    if ("Notification" in window) {
-      const permission = await Notification.requestPermission();
-      setNotificationStatus(permission === "granted" ? "granted" : "denied");
-      if (permission === "granted") {
-        new Notification("VTU Alerts Enabled!", {
-          body: "You'll now receive instant notifications for all VTU circulars.",
-          icon: "/favicon.ico",
-        });
-      }
-    }
-  };
-
   return (
     <section className="py-24 bg-foreground text-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <FadeIn>
-          <div className="w-16 h-16 bg-accent flex items-center justify-center mx-auto mb-8">
-            <Bell className="w-8 h-8 text-accent-foreground" />
+          <div className="size-30 flex items-center justify-center mx-auto mb-8">
+            <Image
+              src="/logo.svg"
+              alt="VTU Alerts Logo"
+              width={70}
+              height={70}
+            />
           </div>
         </FadeIn>
         <SlideUp delay={0.1}>

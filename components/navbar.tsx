@@ -3,23 +3,13 @@
 import { Button } from "@/components/ui/button";
 import { Bell, Menu, X } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "sonner";
+import Image from "next/image";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-
-  const enableNotifications = async () => {
-    if ("Notification" in window) {
-      const permission = await Notification.requestPermission();
-      if (permission === "granted") {
-        new Notification("VTU Alerts Enabled!", {
-          body: "You'll now receive instant notifications for all VTU circulars.",
-          icon: "/favicon.ico",
-        });
-      }
-    }
-  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
@@ -27,8 +17,13 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary flex items-center justify-center">
-              <Bell className="w-4 h-4 text-primary-foreground" />
+            <div className="w-8 h-8 flex items-center justify-center">
+              <Image
+                src="/logo.svg"
+                alt="VTU Alerts Logo"
+                width={32}
+                height={32}
+              />
             </div>
             <span className="font-mono font-semibold text-lg tracking-tight">
               VTU Alerts
