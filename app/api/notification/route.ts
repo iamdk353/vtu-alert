@@ -3,17 +3,15 @@ import { connectDB } from "@/lib/db/connect";
 import axios from "axios";
 import * as cheerio from "cheerio";
 import circularModel from "@/model/circularModel";
-
-// import { updateCircular } from "@/lib/db/updateCircular";
-
+import sendNotification from "@/lib/notification/push-notification";
+type circular = {
+  date: string;
+  title: string;
+  pdfLink: string;
+  circularID: string;
+};
 export async function GET() {
   await connectDB();
-  type circular = {
-    date: string;
-    title: string;
-    pdfLink: string;
-    circularID: string;
-  };
 
   const updateCircular = async (
     { date, title, pdfLink, circularID }: circular,
@@ -62,6 +60,7 @@ export async function GET() {
 
     if (!storedCircular) {
       console.log("updating a new circular to DB");
+      sendNotification(parsedCircular);
       await circularModel.create(parsedCircular);
       return NextResponse.json({
         ...parsedCircular,
@@ -78,6 +77,7 @@ export async function GET() {
     }
 
     await updateCircular(parsedCircular, storedCircular.circularID);
+    sendNotification(parsedCircular);
     console.log("updated circular to DB");
 
     return NextResponse.json({

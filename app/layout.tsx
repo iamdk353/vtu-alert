@@ -1,11 +1,13 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import "./globals.css"
+import type React from "react";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import "./globals.css";
+import Script from "next/script";
+import BeamsInit from "@/lib/notification/init-beam-component";
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const _geist = Geist({ subsets: ["latin"] });
+const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 // <CHANGE> Updated metadata for VTU Notification System
 export const metadata: Metadata = {
@@ -30,19 +32,26 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-icon.png",
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          src="https://js.pusher.com/beams/2.1.0/push-notifications-cdn.js"
+          strategy="afterInteractive"
+        />
+      </head>
       <body className={`font-sans antialiased`}>
+        <BeamsInit />
         {children}
         <Analytics />
       </body>
     </html>
-  )
+  );
 }
