@@ -4,7 +4,8 @@ self.addEventListener("notificationclick", (event) => {
   event.notification.close();
 
   const url =
-    event.notification.data.url || "https://infra-ai-dun.vercel.app/app";
+    event.notification.data.url ||
+    "https://vtu.ac.in/en/category/administration/";
 
   // Focus if already open, else open a new tab
   event.waitUntil(

@@ -11,8 +11,9 @@ export type circular = {
 };
 
 export default async function sendNotification(parsedCircular: circular) {
+  console.log("[sendNotification] Sending notification");
   return await beamsClient.publishToInterests(
-    ["debug-alert"],
+    ["debug-vtu-alert"],
     circularToNotification(parsedCircular)
   );
 }

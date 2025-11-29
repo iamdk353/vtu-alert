@@ -60,7 +60,7 @@ export async function GET() {
 
     if (!storedCircular) {
       console.log("updating a new circular to DB");
-      sendNotification(parsedCircular);
+      await sendNotification(parsedCircular);
       await circularModel.create(parsedCircular);
       return NextResponse.json({
         ...parsedCircular,
@@ -77,7 +77,7 @@ export async function GET() {
     }
 
     await updateCircular(parsedCircular, storedCircular.circularID);
-    sendNotification(parsedCircular);
+    await sendNotification(parsedCircular);
     console.log("updated circular to DB");
 
     return NextResponse.json({
