@@ -11,7 +11,6 @@ export default function BeamsInit({
     console.log("[BeamsInit] Component mounted");
     if (localStorage.getItem("beams-subscribed") === "true") {
       setSuccessSubscription(true);
-      return;
     }
 
     if (typeof window === "undefined") return;
