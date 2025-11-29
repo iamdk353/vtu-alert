@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { FadeIn, SlideUp } from "@/components/motion-wrapper";
-import { Bell, CheckCircle } from "lucide-react";
+import { Bell } from "lucide-react";
 import { useState } from "react";
 
 export function CTASection() {
@@ -39,26 +39,8 @@ export function CTASection() {
         <SlideUp delay={0.2}>
           <p className="text-background/70 text-lg mb-8 max-w-2xl mx-auto">
             Enable browser notifications with one click. No account, no email,
-            no signup — just instant VTU alerts.
+            no signup just instant VTU alerts.
           </p>
-        </SlideUp>
-        <SlideUp delay={0.3}>
-          {notificationStatus === "granted" ? (
-            <div className="flex items-center justify-center gap-2 text-accent">
-              <CheckCircle className="w-5 h-5" />
-              <span className="font-medium">
-                Notifications enabled! You're all set.
-              </span>
-            </div>
-          ) : (
-            <Button
-              onClick={enableNotifications}
-              className="bg-accent text-accent-foreground hover:bg-accent/90 h-14 px-10 text-lg"
-            >
-              <Bell className="w-5 h-5 mr-2" />
-              Enable Notifications
-            </Button>
-          )}
         </SlideUp>
       </div>
     </section>

@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { Badge } from "@/components/ui/badge"
-import { FadeIn, ScaleIn, SlideUp } from "@/components/motion-wrapper"
-import { Award, Rocket, Users, Zap } from "lucide-react"
+import { Badge } from "@/components/ui/badge";
+import { FadeIn, ScaleIn, SlideUp } from "@/components/motion-wrapper";
+import { Award, Rocket, Users, Zap } from "lucide-react";
 
 export function AchievementSection() {
   return (
@@ -20,13 +20,14 @@ export function AchievementSection() {
             </FadeIn>
             <SlideUp delay={0.1}>
               <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-balance mb-6">
-                First Independent Notification Layer for VTU.
+                First Independent and Automatic Notification Layer for VTU.
               </h2>
             </SlideUp>
             <SlideUp delay={0.2}>
               <p className="text-background/70 text-lg leading-relaxed mb-8">
-                After 10+ years of students manually checking the VTU website, we built what VTU never did — a real-time
-                notification system. No existing VTU site, portal, or app provides this.
+                After 10+ years of students manually checking the VTU website,
+                we built what VTU never did a real-time notification system. No
+                existing VTU site, portal, or app provides this.
               </p>
             </SlideUp>
             <SlideUp delay={0.3}>
@@ -67,5 +68,5 @@ export function AchievementSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

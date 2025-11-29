@@ -8,16 +8,12 @@ const vtuIssues = [
   "No notification system",
   "Manual checking required",
   "Easy to miss updates",
-  "No categorization",
-  "No search or archive",
 ];
 
 const ourSolution = [
   "Instant push notifications",
   "Automated tracking",
   "Never miss an update",
-  "Auto-categorized",
-  "Full searchable archive",
 ];
 
 export function SolutionSection() {
@@ -67,8 +63,7 @@ export function SolutionSection() {
                 <Sparkles className="w-8 h-8 mb-4 text-foreground" />
                 <h3 className="font-semibold mb-2">We detect changes</h3>
                 <p className="text-sm text-muted-foreground">
-                  New circulars are detected instantly and categorized
-                  automatically.
+                  New circulars are detected instantly
                 </p>
               </CardContent>
             </Card>
@@ -80,8 +75,7 @@ export function SolutionSection() {
                 <Send className="w-8 h-8 mb-4 text-foreground" />
                 <h3 className="font-semibold mb-2">We notify you</h3>
                 <p className="text-sm text-muted-foreground">
-                  Get instant alerts via email, SMS, or browser push — your
-                  choice.
+                  Get instant alerts via browser push .
                 </p>
               </CardContent>
             </Card>

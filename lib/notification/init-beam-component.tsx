@@ -1,10 +1,18 @@
 "use client";
 import { useEffect } from "react";
+import { toast } from "sonner";
 
-export default function BeamsInit() {
+export default function BeamsInit({
+  setSuccessSubscription,
+}: {
+  setSuccessSubscription: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   useEffect(() => {
     console.log("[BeamsInit] Component mounted");
-
+    if (localStorage.getItem("beams-subscribed") === "true") {
+      setSuccessSubscription(true);
+      return;
+    }
     if (typeof window === "undefined") return;
     console.log("[BeamsInit] window detected");
 
@@ -43,6 +51,10 @@ export default function BeamsInit() {
 
         const id = await beamsClient.getDeviceId();
         console.log("[BeamsInit] Device ID:", id);
+        toast.success("Subscribed to notifications");
+        setSuccessSubscription(true);
+        // add local storage
+        localStorage.setItem("beams-subscribed", "true");
       } catch (err) {
         console.error("[BeamsInit] ❌ ERROR:", err);
       }

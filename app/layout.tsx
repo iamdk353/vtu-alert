@@ -4,8 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Script from "next/script";
-import BeamsInit from "@/lib/notification/init-beam-component";
-
+import { Toaster } from "@/components/ui/sonner";
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
@@ -48,7 +47,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`font-sans antialiased`}>
-        <BeamsInit />
+        <Toaster position="top-center" />
         {children}
         <Analytics />
       </body>
