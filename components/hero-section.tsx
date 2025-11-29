@@ -11,14 +11,24 @@ import {
   Loader,
 } from "lucide-react";
 import useNotification from "@/hooks/useNotification";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BeamsInit from "@/lib/notification/init-beam-component";
+import { TextShimmer } from "./motion-primitives/text-shimmer";
+import BlurText from "./BlurText";
 
 export function HeroSection() {
   const { isNotificationEnabled, requestNotificationPermission } =
     useNotification();
   const [subscribeNotify, setSubscribeNotify] = useState(false);
   const [successSubscription, setSuccessSubscription] = useState(false);
+  const [prevSubscription, setPrevSubscription] = useState(false);
+  useEffect(() => {
+    const beamsSubscribed = localStorage.getItem("beams-subscribed");
+    console.log(beamsSubscribed);
+    if (beamsSubscribed === "true") {
+      setPrevSubscription(true);
+    }
+  }, []);
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
       {subscribeNotify && (
@@ -43,7 +53,14 @@ export function HeroSection() {
           {/* Main Headline */}
           <SlideUp delay={0.1}>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-balance leading-[1.1] mb-6">
-              Never Miss a VTU Circular Again.
+              Never Miss a VTU Circular{" "}
+              <BlurText
+                text="Again...!!!"
+                delay={100}
+                animateBy="letters"
+                direction="top"
+                className="inline-block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight"
+              />
             </h1>
           </SlideUp>
 
@@ -59,34 +76,28 @@ export function HeroSection() {
           <SlideUp delay={0.3}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {isNotificationEnabled ? (
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="w-full sm:w-auto px-8 h-12 text-base bg-transparent"
-                  onClick={() => {
-                    setSubscribeNotify(true);
-                  }}
-                  disabled={subscribeNotify && !successSubscription}
-                >
-                  {subscribeNotify ? (
-                    successSubscription ? (
-                      <>
-                        <CheckCircle />
-                        Subscribed
-                      </>
-                    ) : (
-                      <>
-                        <Loader className="animate-spin" />
-                        Just a minute....
-                      </>
-                    )
-                  ) : (
-                    <>
-                      Subscribe to notifications
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </>
-                  )}
-                </Button>
+                prevSubscription ? (
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="w-full sm:w-auto px-8 h-12 text-base bg-transparent"
+                  >
+                    <CheckCircle className="w-4 h-4 mr-2 text-green-500" />{" "}
+                    already subscribed
+                  </Button>
+                ) : (
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="w-full sm:w-auto px-8 h-12 text-base bg-transparent"
+                    onClick={() => {
+                      setSubscribeNotify(true);
+                    }}
+                  >
+                    Subscribe to notifications
+                    <ArrowRight className="w-4 h-4 ml-2 text-green-500" />
+                  </Button>
+                )
               ) : (
                 <Button
                   size="lg"

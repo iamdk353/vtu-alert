@@ -1,16 +1,22 @@
-"use client"
+"use client";
 
-import { motion, type HTMLMotionProps } from "framer-motion"
-import type { ReactNode } from "react"
+import { motion, type HTMLMotionProps } from "framer-motion";
+import type { ReactNode } from "react";
 
 interface FadeInProps extends HTMLMotionProps<"div"> {
-  children: ReactNode
-  delay?: number
-  duration?: number
-  className?: string
+  children: ReactNode;
+  delay?: number;
+  duration?: number;
+  className?: string;
 }
 
-export function FadeIn({ children, delay = 0, duration = 0.5, className, ...props }: FadeInProps) {
+export function FadeIn({
+  children,
+  delay = 0,
+  duration = 0.5,
+  className,
+  ...props
+}: FadeInProps) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -22,10 +28,16 @@ export function FadeIn({ children, delay = 0, duration = 0.5, className, ...prop
     >
       {children}
     </motion.div>
-  )
+  );
 }
 
-export function SlideUp({ children, delay = 0, duration = 0.5, className, ...props }: FadeInProps) {
+export function SlideUp({
+  children,
+  delay = 0,
+  duration = 0.5,
+  className,
+  ...props
+}: FadeInProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -37,7 +49,7 @@ export function SlideUp({ children, delay = 0, duration = 0.5, className, ...pro
     >
       {children}
     </motion.div>
-  )
+  );
 }
 
 export function SlideIn({
@@ -59,14 +71,18 @@ export function SlideIn({
     >
       {children}
     </motion.div>
-  )
+  );
 }
 
 export function StaggerContainer({
   children,
   className,
   staggerDelay = 0.1,
-}: { children: ReactNode; className?: string; staggerDelay?: number }) {
+}: {
+  children: ReactNode;
+  className?: string;
+  staggerDelay?: number;
+}) {
   return (
     <motion.div
       initial="hidden"
@@ -83,24 +99,40 @@ export function StaggerContainer({
     >
       {children}
     </motion.div>
-  )
+  );
 }
 
-export function StaggerItem({ children, className }: { children: ReactNode; className?: string }) {
+export function StaggerItem({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   return (
     <motion.div
       variants={{
         hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.4, ease: "easeOut" },
+        },
       }}
       className={className}
     >
       {children}
     </motion.div>
-  )
+  );
 }
 
-export function ScaleIn({ children, delay = 0, duration = 0.5, className, ...props }: FadeInProps) {
+export function ScaleIn({
+  children,
+  delay = 0,
+  duration = 0.5,
+  className,
+  ...props
+}: FadeInProps) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -112,5 +144,5 @@ export function ScaleIn({ children, delay = 0, duration = 0.5, className, ...pro
     >
       {children}
     </motion.div>
-  )
+  );
 }
